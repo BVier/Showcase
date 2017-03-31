@@ -120,6 +120,7 @@
 							<maxAttempts>60</maxAttempts>
 							<arguments>
 								<argument>--server.port=8091</argument>
+								<argument>--spring.profiles.active=acceptance_test</argument>
 							</arguments>
 						</configuration>
 					</execution>
