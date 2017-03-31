@@ -1,8 +1,8 @@
 package org.educama.acceptancetests.stepdefinitions;
 
 import net.thucydides.core.annotations.Steps;
+import org.educama.acceptancetests.steps.ShipmentsListSteps;
 import org.educama.acceptancetests.steps.TaskListSteps;
-import org.jbehave.core.annotations.BeforeScenario;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -15,14 +15,18 @@ public class TaskListStepDefinitions {
     @Steps
     TaskListSteps user;
 
-    @BeforeScenario
-    public void clearDatabaseBeforeScenario() {
-        // TODO Clear the Database before Scenario starts
-    }
+    @Steps
+    ShipmentsListSteps shipmentsListSteps;
 
     @Given(value = "there are $count tasks with name '$description' assigned to $assignee")
     public void givenThereAreNumberTasksWithNameCheckShipmentAssignedToName(int count, String description, String assignee) {
-        // TODO Create some Tasks and delegate them to the assignee
+        if ("Tom".equals(assignee)) {
+            shipmentsListSteps.openShipmentsListPage();
+            for (int i = 0; i < count; i++) {
+                shipmentsListSteps.addOneShipment();
+            }
+        }
+        // TODO Create Task/Shipments for other assignees
     }
 
     @When("Tom requests the list of tasks")
